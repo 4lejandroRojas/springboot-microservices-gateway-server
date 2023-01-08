@@ -9,6 +9,8 @@ import org.springframework.http.ResponseCookie;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 @Component
@@ -32,10 +34,19 @@ public class EjemploGatewayFilterFactory extends AbstractGatewayFilterFactory<Ej
             }));
         };
     }
+    
+    @Override
+	public List<String> shortcutFieldOrder() {
+		return Arrays.asList("mensaje", "cookieNombre", "cookieValor");
+	}
+
+    @Override
+    public String name() {
+        return "EjemploCookie";
+    }
 
     @Getter
     @Setter
-
     public static class Configuracion {
         private String mensaje;
         private String cookieValor;
